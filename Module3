@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" /> 
+
+  <title>JavaScript Loop Practice (DOM)</title> 
+
+  <style> 
+
+    body { font-family: Arial, sans-serif; } 
+
+    section { margin-bottom: 1.5rem; } 
+
+    hr { margin: 1rem 0; } 
+
+  </style> 
+
+</head> 
+
+<body> 
+
+  <h1>JavaScript Loop Practice (DOM Version)</h1> 
+
+  
+
+  <!-- Containers where we’ll put our output --> 
+
+  <section id="oddEvenSection"> 
+
+    <h2>Odd/Even Count (0–10)</h2> 
+
+  </section> 
+
+  
+
+  <section id="doWhileSection"> 
+
+    <h2>do...while Loop (1 to myNum)</h2> 
+
+  </section> 
+
+  
+
+  <section id="subjectsSection"> 
+
+    <h2>Subjects</h2> 
+
+  </section> 
+
+  
+
+  <script> 
+
+    // Helper function: append a line of text to a section 
+
+    function addLine(sectionId, text) { 
+
+      const section = document.getElementById(sectionId); 
+
+      const p = document.createElement('p'); 
+
+      p.textContent = text; 
+
+      section.appendChild(p); 
+
+    } 
+
+  
+
+    // 1. For loop from 0 to 10, check odd/even and display to the webpage 
+
+    for (let i = 0; i <= 10; i++) { 
+
+      if (i % 2 === 0) { 
+
+        addLine('oddEvenSection', `Count ${i} is even`); 
+
+      } else { 
+
+        addLine('oddEvenSection', `Count ${i} is odd`); 
+
+      } 
+
+    } 
+
+  
+
+    // 2. Ask the user for a number between 5 and 20 and store it in myNum. 
+
+    //    Then use a do...while loop to display the counter from 1 up to myNum. 
+
+  
+
+    let myNum; 
+
+  
+
+    // Keep asking until the user enters a valid number between 5 and 20 
+
+    while (true) { 
+
+      const input = prompt('Enter a number between 5 and 20:'); 
+
+  
+
+      // If user cancels, stop asking and exit this part 
+
+      if (input === null) { 
+
+        addLine('doWhileSection', 'User cancelled input. No loop will run.'); 
+
+        break; 
+
+      } 
+
+  
+
+      myNum = Number(input); 
+
+  
+
+      if (!Number.isNaN(myNum) && myNum >= 5 && myNum <= 20) { 
+
+        // Valid input 
+
+        let counter = 1; 
+
+        do { 
+
+          addLine('doWhileSection', `Counter: ${counter}`); 
+
+          counter++; 
+
+        } while (counter <= myNum); 
+
+        break; // exit while(true) 
+
+      } else { 
+
+        alert('Invalid input. Please enter a number between 5 and 20.'); 
+
+      } 
+
+    } 
+
+  
+
+    // 3. Store subjects in an array 
+
+    const subjects = [ 
+
+      'Accounting', 
+
+      'Algebra', 
+
+      'Programming', 
+
+      'Art', 
+
+      'Data Analytics' 
+
+    ]; 
+
+  
+
+    const subjectsSection = document.getElementById('subjectsSection'); 
+
+  
+
+    // 4. Display the array values in a readable format using forEach() 
+
+    const listTitle = document.createElement('p'); 
+
+    listTitle.textContent = 'Subjects (one per line):'; 
+
+    subjectsSection.appendChild(listTitle); 
+
+  
+
+    subjects.forEach(function(subject, index) { 
+
+      const p = document.createElement('p'); 
+
+      p.textContent = `${index + 1}. ${subject}`; 
+
+      subjectsSection.appendChild(p); 
+
+    }); 
+
+  
+
+    // 5. Display the array values separated by commas using one statement 
+
+    const commaTitle = document.createElement('p'); 
+
+    commaTitle.textContent = 'Subjects (comma-separated):'; 
+
+    subjectsSection.appendChild(commaTitle); 
+
+  
+
+    const commaLine = document.createElement('p'); 
+
+    commaLine.textContent = subjects.join(', '); 
+
+    subjectsSection.appendChild(commaLine); 
+
+  </script> 
+
+</body> 
+
+</html>  
